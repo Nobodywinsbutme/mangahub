@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MangaHub WebSocket Test</title>
+</head>
+<body style="font-family: Arial; padding: 20px;">
+    <h2>MangaHub WebSocket Test</h2>
+    <div id="output" style="background: #f4f4f4; padding: 10px; border: 1px solid #ccc; height: 200px; overflow-y: scroll;"></div>
+
+    <script>
+        const output = document.getElementById('output');
+        function logMessage(msg) {
+            output.innerHTML += `<p>${msg}</p>`;
+        }
+
+        logMessage("⏳ Attempting to connect to ws://localhost:9093/ws...");
+        
+        // Connect to your Go server
+        const ws = new WebSocket("ws://localhost:9093/ws");
+
+        ws.onopen = () => {
+            logMessage("✅ <b>SUCCESS: Connected to MangaHub!</b>");
+            ws.send("Hello from the HTML client!");
+        };
+
+        ws.onmessage = (event) => {
+            logMessage("📩 <b>Received from server:</b> " + event.data);
+        };
+
+        ws.onerror = (error) => {
+            logMessage("❌ <b>ERROR:</b> Could not connect. Is the Go server running?");
+        };
+
+        ws.onclose = () => {
+            logMessage("🔌 Disconnected from server.");
+        };
+    </script>
+</body>
+</html>
