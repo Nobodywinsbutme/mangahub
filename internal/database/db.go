@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	_ "github.com/mattn/go-sqlite3" // blank import: registers the SQLite driver
+	_ "modernc.org/sqlite" // blank import: registers the SQLite driver
 )
 
 // DB is the global database connection pool.
@@ -20,7 +20,7 @@ func Init(dbPath string) error {
 	}
 
 	var err error
-	DB, err = sql.Open("sqlite3", dbPath)
+	DB, err = sql.Open("sqlite", dbPath)
 	if err != nil {
 		return err
 	}
