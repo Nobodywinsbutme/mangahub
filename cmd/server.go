@@ -6,6 +6,11 @@ import (
 	"github.com/Nobodywinsbutme/mangahub/internal/database"
 	"github.com/Nobodywinsbutme/mangahub/internal/http_server"
 	"github.com/spf13/cobra"
+
+	"github.com/Nobodywinsbutme/mangahub/internal/grpc"
+	"github.com/Nobodywinsbutme/mangahub/internal/tcp"
+	"github.com/Nobodywinsbutme/mangahub/internal/udp"
+	"github.com/Nobodywinsbutme/mangahub/internal/websocket"
 )
 
 var serverCmd = &cobra.Command{
@@ -35,4 +40,18 @@ func init() {
 	serverCmd.AddCommand(serverStartCmd)
 	// Wire server command to root
 	rootCmd.AddCommand(serverCmd)
+}
+
+func runServers() {
+	log.Println("Starting MangaHub Multi-Protocol Backend...")
+
+	// Launch servers as independent goroutines
+	// go http_server.Start("8080") // Assumed from Phase 1
+	go tcp.Start("9090")
+	go udp.Start("9091")
+	go grpc.Start("9092")
+	go websocket.Start("9093")
+
+	// Block the main thread indefinitely so the background goroutines stay alive
+	select {}
 }
