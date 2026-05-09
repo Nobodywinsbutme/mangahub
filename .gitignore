@@ -1,0 +1,11 @@
+@'
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+mangahub
+mangahub-*
+.DS_Store
+vendor/
+'@ | Out-File -FilePath .gitignore -Encoding UTF8
