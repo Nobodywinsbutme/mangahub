@@ -169,6 +169,10 @@ Docs: [PHASE2.md](./PHASE2.md)
 Status: ✅ Complete  
 Docs: [PHASE3.md](./PHASE3.md)
 
+### Phase 4: Demo Preparation
+Status: Complete
+Docs: [PHASE4.md](./PHASE4.md)
+
 ---
 
 ## 🚀 Quick Start
@@ -213,9 +217,12 @@ Invoke-RestMethod -Method Post `
 ./mangahub.exe chat --username bob
 ```
 
+### gRPC Manga Service
+```bash
+./mangahub.exe manga search --query One
+./mangahub.exe manga get --id one-piece
+./mangahub.exe manga grpc-progress --user-id usr_123 --manga-id one-piece --chapter 52 --status reading
+```
+
 ---
 
-## ✅ Status
-All 5 protocols are live and tested.
-
-**Last Updated:** 2026-05-10  
