@@ -15,9 +15,4 @@ dist/
 .env
 .env.*
 .DS_Store
-<<<<<<< HEAD
 vendor/
-=======
-vendor/
-.gocache/
->>>>>>> 6bfa9cd388731271a376da3b78ea556376bd354d
