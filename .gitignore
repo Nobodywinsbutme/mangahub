@@ -1,4 +1,3 @@
-@'
 *.exe
 *.exe~
 *.dll
@@ -8,4 +7,4 @@ mangahub
 mangahub-*
 .DS_Store
 vendor/
-'@ | Out-File -FilePath .gitignore -Encoding UTF8
+.gocache/
