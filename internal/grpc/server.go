@@ -20,8 +20,7 @@ type MangaServer struct {
 func (s *MangaServer) GetManga(ctx context.Context, req *pb.GetMangaRequest) (*pb.GetMangaResponse, error) {
 	var resp pb.GetMangaResponse
 
-	// Assuming your table is named 'mangas'
-	query := `SELECT id, title, author, total_chapters, status FROM mangas WHERE id = ?`
+	query := `SELECT id, title, author, total_chapters, status FROM manga WHERE id = ?`
 	err := database.DB.QueryRowContext(ctx, query, req.MangaId).Scan(
 		&resp.Id, &resp.Title, &resp.Author, &resp.TotalChapters, &resp.Status,
 	)
@@ -37,7 +36,7 @@ func (s *MangaServer) GetManga(ctx context.Context, req *pb.GetMangaRequest) (*p
 }
 
 func (s *MangaServer) SearchManga(ctx context.Context, req *pb.SearchMangaRequest) (*pb.SearchMangaResponse, error) {
-	query := `SELECT id, title, author, total_chapters, status FROM mangas WHERE title LIKE ?`
+	query := `SELECT id, title, author, total_chapters, status FROM manga WHERE title LIKE ?`
 
 	// Add wildcards for fuzzy searching
 	searchTerm := "%" + req.Query + "%"
